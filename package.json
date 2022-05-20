@@ -1,0 +1,12 @@
+{
+  "name": "runx-website",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
