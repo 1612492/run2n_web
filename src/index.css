@@ -1,0 +1,300 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.logo {
+  width: 12rem;
+}
+
+.nav {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.nav-item {
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #374151;
+}
+
+.nav-item:hover {
+  text-decoration: underline;
+  text-decoration-color: #374151;
+}
+
+.intro {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 34rem;
+  background-image: url('./images/hero.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.heading {
+  padding: 1rem 0;
+  position: relative;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.25rem;
+}
+
+.heading::before,
+.heading::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 6rem;
+  height: 0.5rem;
+  background-color: #fff;
+}
+
+.heading::before {
+  top: 0;
+}
+
+.heading::after {
+  bottom: 0;
+}
+
+.sub-heading {
+  margin-top: 4rem;
+  max-width: 26rem;
+  text-align: right;
+  color: #fff;
+}
+
+.intro__button {
+  margin-top: 4rem;
+  padding: 1rem 10rem;
+  font-size: 1rem;
+  font-weight: 900;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  background-color: #4ade80;
+  color: #fff;
+}
+
+.features,
+.marketplace,
+.roadmap,
+.contact {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  position: relative;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  text-align: center;
+  font-size: 3rem;
+  color: #374151;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  height: 0.5rem;
+  bottom: 0;
+  left: -1rem;
+  right: -1rem;
+  background-color: #4ade80;
+}
+
+.feature {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.feature__side {
+  flex: 1;
+}
+
+.feature__side--flex {
+  display: flex;
+  justify-content: center;
+}
+
+.feature__title {
+  margin-top: 2rem;
+  padding: 1rem 0;
+  position: relative;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.25rem;
+  color: #374151;
+}
+
+.feature__title::before,
+.feature__title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 6rem;
+  height: 0.5rem;
+  background-color: #374151;
+}
+
+.feature__title::before {
+  top: 0;
+}
+
+.feature__title::after {
+  bottom: 0;
+}
+
+.feature__detail {
+  margin-top: 2rem;
+  max-width: 26rem;
+  font-size: 1.25rem;
+  color: #374151;
+}
+
+.feature__image {
+  max-width: 24rem;
+}
+
+.feature__small-image {
+  max-width: 18rem;
+}
+
+.sneakers {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sneaker {
+  width: 14rem;
+  height: 28rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+}
+
+.sneaker--red {
+  background-color: #fecaca;
+}
+
+.sneaker--orange {
+  background-color: #fdba74;
+}
+
+.sneaker--yellow {
+  background-color: #fde047;
+}
+
+.sneaker--green {
+  background-color: #bef264;
+}
+
+.sneaker--blue {
+  background-color: #93c5fd;
+}
+
+.sneaker-image {
+  max-width: 10rem;
+}
+
+.bullets {
+  width: 80%;
+  position: relative;
+}
+
+.bullets:before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  left: 1rem;
+  bottom: 1rem;
+  width: 0.5rem;
+  background: #4ade80;
+}
+
+.bullet {
+  display: flex;
+  margin-bottom: 2rem;
+  color: #374151;
+}
+
+.bullet__icon {
+  content: '';
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 2rem;
+  position: relative;
+}
+
+.roadmap__title {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form__label {
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.form__input {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 0.125rem solid #374151;
+  border-radius: 0.5rem;
+  color: #374151;
+  font-size: 1rem;
+}
+
+.form__input:focus {
+  border: 0.2rem solid #4ade80;
+  outline-color: #4ade80;
+}
+
+.footer {
+  padding: 2rem;
+  margin-top: 5rem;
+  text-align: center;
+  color: #374151;
+}
