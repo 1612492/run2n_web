@@ -1,15 +1,20 @@
 :root {
   --primary: #4ade80;
+  --primary-light: #22c55e;
   --text: #374151;
   --background: #fff;
   --border: #e5e7eb;
   --shadow: rgba(0, 0, 0, 0.1);
   --red: #fecaca;
-  --orange: #fdba74;
   --yellow: #fde047;
   --green: #bef264;
   --blue: #93c5fd;
+  --violet: #c4b5fd;
   --white: #fff;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -34,11 +39,12 @@ p {
 }
 
 .header {
+  height: 6rem;
   position: sticky;
   top: 0;
   z-index: 1;
   background-color: var(--background);
-  border-bottom: 0.1rem solid var(--border);
+  border-bottom: 1px solid var(--border);
   box-shadow: 1px 1px 4px 1px var(--shadow);
 }
 
@@ -50,7 +56,7 @@ p {
 }
 
 .logo {
-  width: 12rem;
+  width: 10rem;
 }
 
 .toggle-button {
@@ -80,11 +86,11 @@ p {
 }
 
 .fake-input:checked ~ .toggle-button .line--top {
-  transform: rotate(-45deg) translateY(10px);
+  transform: rotate(-45deg) translateY(7px);
 }
 
 .fake-input:checked ~ .toggle-button .line--bottom {
-  transform: rotate(45deg) translateY(-10px);
+  transform: rotate(45deg) translateY(-7px);
 }
 
 .nav {
@@ -99,13 +105,18 @@ p {
   color: var(--text);
 }
 
+.nav-item:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--text);
+}
+
 .intro {
   padding: 4rem;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  height: 34rem;
+  height: 40rem;
   background-image: url('./images/hero.png');
   background-position: right;
   background-repeat: no-repeat;
@@ -147,7 +158,7 @@ p {
 }
 
 .intro__button {
-  margin-top: 4rem;
+  margin-top: 3rem;
   padding: 1rem 6rem;
   font-size: 1rem;
   font-weight: 900;
@@ -159,11 +170,15 @@ p {
   color: var(--white);
 }
 
+.intro__button:hover {
+  background-color: var(--primary-light);
+}
+
 .features,
 .marketplace,
 .roadmap,
 .contact {
-  margin-top: 4rem;
+  margin-bottom: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -248,10 +263,6 @@ p {
   max-width: 24rem;
 }
 
-.feature__small-image {
-  max-width: 18rem;
-}
-
 .sneakers {
   width: 100%;
   margin-top: 2rem;
@@ -276,8 +287,8 @@ p {
   background-color: var(--red);
 }
 
-.sneaker--orange {
-  background-color: var(--orange);
+.sneaker--violet {
+  background-color: var(--violet);
 }
 
 .sneaker--yellow {
@@ -348,14 +359,14 @@ p {
 .form__input {
   margin-bottom: 1rem;
   padding: 1rem;
-  border: 0.125rem solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 0.25rem;
   color: var(--text);
   font-size: 1rem;
 }
 
 .form__input:focus {
-  border: 0.2rem solid var(--primary);
+  border-color: var(--primary);
   outline-color: var(--primary);
 }
 
@@ -376,6 +387,10 @@ p {
   color: var(--white);
 }
 
+.submit-button:hover {
+  background-color: var(--primary-light);
+}
+
 .footer {
   padding: 2rem;
   margin-top: 5rem;
@@ -384,11 +399,7 @@ p {
 }
 
 @media (max-width: 1240px) {
-  .header__inner {
-    padding-right: 2rem;
-    padding-left: 2rem;
-  }
-
+  .navbar,
   .features,
   .marketplace {
     padding-right: 2rem;
@@ -416,10 +427,6 @@ p {
     max-width: 12rem;
   }
 
-  .feature__small-image {
-    max-width: 8rem;
-  }
-
   .sneaker {
     width: 12rem;
     height: 18rem;
@@ -437,25 +444,25 @@ p {
     display: block;
     position: fixed;
     top: 6rem;
+    left: 0;
+    right: 0;
     width: 100%;
     transition: all 0.3s ease-out;
     background: var(--background);
-    border-bottom: 0.1rem solid var(--border);
+    border-bottom: 1px solid var(--border);
     box-shadow: 1px 1px 4px 1px var(--shadow);
   }
 
   .nav-item {
-    padding: 1rem;
+    padding: 1rem 2rem;
     display: block;
   }
 
   .toggle-button {
-    padding-right: 1rem;
-    padding-left: 1rem;
     position: relative;
     display: flex;
     flex-direction: column;
-    row-gap: 0.3rem;
+    row-gap: 3px;
     cursor: pointer;
   }
 
@@ -465,10 +472,6 @@ p {
 
   .feature__image {
     max-width: 24rem;
-  }
-
-  .feature__small-image {
-    max-width: 12rem;
   }
 
   .sneaker {
@@ -503,11 +506,6 @@ p {
   .feature__image {
     margin-top: 2rem;
     max-width: 14rem;
-  }
-
-  .feature__small-image {
-    margin-top: 2rem;
-    max-width: 8rem;
   }
 
   .sneaker {

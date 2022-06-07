@@ -93,7 +93,7 @@ function App() {
                 <img
                   src={walletImage}
                   alt="Decentralized wallet"
-                  className="feature__small-image"
+                  className="feature__image"
                 />
               </section>
             </article>
@@ -109,7 +109,7 @@ function App() {
                 <img
                   src={activityImage}
                   alt="Tracking your training"
-                  className="feature__small-image"
+                  className="feature__image"
                 />
               </section>
             </article>
@@ -121,16 +121,16 @@ function App() {
               <article className="sneaker sneaker--red">
                 <img src={sneaker1} alt="Sneaker 1" className="sneaker-image" />
               </article>
-              <article className="sneaker sneaker--orange">
+              <article className="sneaker sneaker--yellow">
                 <img src={sneaker2} alt="Sneaker 2" className="sneaker-image" />
               </article>
-              <article className="sneaker sneaker--yellow">
+              <article className="sneaker sneaker--green">
                 <img src={sneaker3} alt="Sneaker 3" className="sneaker-image" />
               </article>
-              <article className="sneaker sneaker--green">
+              <article className="sneaker sneaker--blue">
                 <img src={sneaker4} alt="Sneaker 4" className="sneaker-image" />
               </article>
-              <article className="sneaker sneaker--blue">
+              <article className="sneaker sneaker--violet">
                 <img src={sneaker5} alt="Sneaker 5" className="sneaker-image" />
               </article>
             </section>
