@@ -11,9 +11,9 @@ function Intro() {
         Run2n is a Web3 fitness and lifestyle mobile app with inbuilt NFT gaming and Social-fi
         elements where you can earn rewards in Crypto/NFTs just by movement like walking or running.
       </p>
-      <section className="community">
-        <p className="community__title">Join our community</p>
-        <section className="community__links">
+      <section className="community community--intro">
+        <p className="community__title community__title--intro">Join our community</p>
+        <div>
           <a
             rel="noreferer"
             target="_blank"
@@ -38,7 +38,7 @@ function Intro() {
           >
             <img src={twitterImage} alt="twitter" className="community__image" />
           </a>
-        </section>
+        </div>
       </section>
     </section>
   );
