@@ -23,6 +23,9 @@ function Header() {
           <a href="#roadmap" className="nav-item">
             Roadmap
           </a>
+          <a href="#testnet" className="nav-item">
+            Testnet
+          </a>
           <a href="#contact" className="nav-item">
             Contact
           </a>

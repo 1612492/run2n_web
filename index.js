@@ -17,7 +17,7 @@ const schema = yup.object({
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('dist'));
 
 app.post('/contact', (req, res) => {
   const { email, message } = req.body;
