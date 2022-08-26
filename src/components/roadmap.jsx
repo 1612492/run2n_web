@@ -71,13 +71,13 @@ function Roadmap() {
             <div className="roadmap__card">
               <p className="roadmap__title">Q3 2022</p>
               <p className="roadmap__text">
-                <span className="checked-icon">&#8226;</span> Community Growth
+                <span className="checked-icon">&#10004;</span> Community Growth
               </p>
               <p className="roadmap__text">
-                <span className="checked-icon">&#8226;</span> Public testnet app
+                <span className="checked-icon">&#10004;</span> Public testnet app
               </p>
               <p className="roadmap__text">
-                <span className="checked-icon">&#8226;</span> Collect feedback and improve
+                <span className="checked-icon">&#10004;</span> Collect feedback and improve
               </p>
               <p className="roadmap__text">
                 <span className="checked-icon">&#8226;</span> Security improvement
