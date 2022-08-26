@@ -347,44 +347,65 @@ p {
   max-width: 10rem;
 }
 
-.bullets {
-  width: 80%;
-  position: relative;
-  overflow: hidden;
+.roadmap__body {
+  width: 100%;
 }
 
-.bullets:before {
-  content: '';
-  position: absolute;
-  height: 100%;
-  left: 1rem;
-  bottom: 2rem;
+.roadmap__row {
+  display: flex;
+}
+
+.roadmap__title {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.roadmap__row-mid {
+  position: relative;
   width: 0.5rem;
   background-color: var(--primary);
 }
 
 .bullet {
-  display: flex;
-  margin-bottom: 2rem;
+  background-color: var(--primary);
+  border-radius: 50%;
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  left: -1rem;
+  top: calc(50% - 1.25rem);
+}
+
+.checked-icon {
+  display: inline-block;
+  color: var(--primary);
+  width: 1rem;
+}
+
+.roadmap__text {
   color: var(--text);
 }
 
-.bullet__icon {
-  content: '';
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-right: 3rem;
-  position: relative;
+.roadmap__row-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.bullet__content {
-  min-height: 2rem;
+.roadmap__row-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
 }
 
-.roadmap__title {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+.roadmap__card {
+  width: 400px;
+  border: 4px solid var(--primary);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0 3rem;
 }
 
 .testnet__links {
@@ -534,6 +555,21 @@ p {
   .sneaker-image {
     max-width: 8rem;
   }
+
+  .roadmap__row {
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  .roadmap__row-left,
+  .roadmap__row-right {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .roadmap__row-mid {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -637,9 +673,5 @@ p {
 
   .sneaker-image {
     max-width: 10rem;
-  }
-
-  .bullet__icon {
-    margin-right: 1rem;
   }
 }

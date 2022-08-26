@@ -1,73 +1,151 @@
-import checkedImage from '../images/checked.svg';
-import notCheckedImage from '../images/dot.svg';
+import dotIcon from '../images/dot.svg';
+import checkedIcon from '../images/checked.svg';
 
 function Roadmap() {
   return (
     <section id="roadmap" className="roadmap">
       <h2 className="title">Roadmap</h2>
-      <section className="bullets">
-        <article className="bullet">
-          <img src={checkedImage} alt="bullet" className="bullet__icon" />
-          <article className="bullet__content">
-            <p className="roadmap__title">LAUNCH</p>
-            <p>Run2n is born and a new journey start.</p>
-          </article>
+      <section className="roadmap__body">
+        <article className="roadmap__row">
+          <div className="roadmap__row-left"></div>
+          <div className="roadmap__row-mid">
+            <div className="bullet" />
+          </div>
+          <div className="roadmap__row-right">
+            <div className="roadmap__card">
+              <p className="roadmap__title">MAY 2022</p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#10004;</span> Project Kickstart
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#10004;</span> Building team
+              </p>
+            </div>
+          </div>
         </article>
-        <article className="bullet">
-          <img src={checkedImage} alt="bullet" className="bullet__icon" />
-          <article className="bullet__content">
-            <p className="roadmap__title">INITIAL EXPOSURE</p>
-            <p>Advertising, influencers marketing push</p>
-          </article>
+        <article className="roadmap__row">
+          <div className="roadmap__row-left">
+            <div className="roadmap__card">
+              <p className="roadmap__title">JUNE 2022</p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#10004;</span> UI/UX Design
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#10004;</span> Smart contract
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#10004;</span> Game Mechanism & Documents
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#10004;</span> Integrate Binance Smart Chain
+              </p>
+            </div>
+          </div>
+          <div className="roadmap__row-mid">
+            <div className="bullet" />
+          </div>
+          <div className="roadmap__row-right"></div>
         </article>
-        <article className="bullet">
-          <img src={checkedImage} alt="bullet" className="bullet__icon" />
-          <article className="bullet__content">
-            <p className="roadmap__title">CORE TEAM BUILDING</p>
-            <p>We are at 50% at the moment and looking for some new members</p>
-          </article>
+        <article className="roadmap__row">
+          <div className="roadmap__row-left"></div>
+          <div className="roadmap__row-mid">
+            <div className="bullet" />
+          </div>
+          <div className="roadmap__row-right">
+            <div className="roadmap__card">
+              <p className="roadmap__title">JULY 2022</p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#10004;</span> Marketing kickoff
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#10004;</span> Internal bugs fixing
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#10004;</span> Marketplace in-app
+              </p>
+            </div>
+          </div>
         </article>
-        <article className="bullet">
-          <img src={checkedImage} alt="bullet" className="bullet__icon" />
-          <article className="bullet__content">
-            <p className="roadmap__title">PRODUCT DEVELOPMENT 60%</p>
-            <p>Research game and NFTs</p>
-            <p>Initial development of gameplay and NFTs</p>
-            <p>Support Binance Smart Chain (BSC) </p>
-          </article>
+        <article className="roadmap__row">
+          <div className="roadmap__row-left">
+            <div className="roadmap__card">
+              <p className="roadmap__title">Q3 2022</p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Community Growth
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Public testnet app
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Collect feedback and improve
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Security improvement
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> IDO
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Mainnet Phase 1
+              </p>
+            </div>
+          </div>
+          <div className="roadmap__row-mid">
+            <div className="bullet" />
+          </div>
+          <div className="roadmap__row-right"></div>
         </article>
-        <article className="bullet">
-          <img src={notCheckedImage} alt="bullet" className="bullet__icon" />
-          <article className="bullet__content">
-            <p className="roadmap__title">COMMUNITY 65%</p>
-            <p>
-              Fudders and people that came for a quick buck are starting to leave out of boredom,
-              wholesome community is building
-            </p>
-          </article>
+        <article className="roadmap__row">
+          <div className="roadmap__row-left"></div>
+          <div className="roadmap__row-mid">
+            <div className="bullet" />
+          </div>
+          <div className="roadmap__row-right">
+            <div className="roadmap__card">
+              <p className="roadmap__title">Q4 2022</p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Arena feature
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Group feature
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Mainnet Phase 2
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Collab expand
+              </p>
+            </div>
+          </div>
         </article>
-        <article className="bullet">
-          <img src={notCheckedImage} alt="bullet" className="bullet__icon" />
-          <article className="bullet__content">
-            <p className="roadmap__title">FURTHER EXPOSURE</p>
-            <p>We are preparing soon for a second marketing push</p>
-          </article>
-        </article>
-        <article className="bullet">
-          <img src={notCheckedImage} alt="bullet" className="bullet__icon" />
-          <article className="bullet__content">
-            <p className="roadmap__title">PARTNERSHIPS 30%</p>
-            <p>Run testnet, IEO/IDO</p>
-            <p>Run Open Beta (Android, IOS)</p>
-            <p>Open marketplace</p>
-          </article>
-        </article>
-        <article className="bullet">
-          <img src={notCheckedImage} alt="bullet" className="bullet__icon" />
-          <article className="bullet__content">
-            <p className="roadmap__title">IN THE FUTURE</p>
-            <p>Much more to come!</p>
-          </article>
+        <article className="roadmap__row">
+          <div className="roadmap__row-left">
+            <div className="roadmap__card">
+              <p className="roadmap__title">2023 & beyond</p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Side-chain to scalable
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> DAO
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Shoe renting feature
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Staking feature
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Social feature
+              </p>
+              <p className="roadmap__text">
+                <span className="checked-icon">&#8226;</span> Mainnet Phase 3
+              </p>
+            </div>
+          </div>
+          <div className="roadmap__row-mid">
+            <div className="bullet" />
+          </div>
+          <div className="roadmap__row-right"></div>
         </article>
       </section>
     </section>
