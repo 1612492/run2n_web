@@ -536,6 +536,19 @@ p {
   align-items: center;
 }
 
+.powered-by {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.bnb-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
 @media (max-width: 1240px) {
   .navbar,
   .videos,
