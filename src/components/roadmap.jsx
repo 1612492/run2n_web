@@ -1,6 +1,3 @@
-import dotIcon from '../images/dot.svg';
-import checkedIcon from '../images/checked.svg';
-
 function Roadmap() {
   return (
     <section id="roadmap" className="roadmap">
