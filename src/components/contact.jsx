@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import Toast from '../components/toast';
 import useFetch from '../hooks/useFetch';
+import uploadIcon from '../images/upload.svg';
 import classname from '../utils/classname';
 
 const schema = yup.object({
@@ -61,6 +62,7 @@ function Contact() {
         />
         <p className="form__error-text">{errors.message?.message}</p>
         <button disabled={isLoading} className="submit-button">
+          <img src={uploadIcon} alt="icon" />
           Submit
         </button>
       </form>

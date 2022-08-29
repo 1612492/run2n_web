@@ -19,6 +19,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
 }
@@ -42,7 +46,9 @@ p {
 
 .header {
   height: 6rem;
-  position: sticky;
+  position: fixed;
+  left: 0;
+  right: 0;
   top: 0;
   z-index: 1;
   background-color: var(--background);
@@ -117,6 +123,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  align-self: stretch;
   text-align: right;
   height: 40rem;
   background-image: url('./images/hero.png');
@@ -208,13 +215,14 @@ p {
   height: 100%;
 }
 
+.home,
 .videos,
 .features,
 .marketplace,
 .roadmap,
 .testnet,
 .contact {
-  margin-bottom: 4rem;
+  padding-top: 6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -408,12 +416,36 @@ p {
   margin: 0 3rem;
 }
 
+.download-button {
+  width: 12rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  margin: 4rem auto 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+  text-decoration: none;
+  column-gap: 0.5rem;
+}
+
+.download-button:hover {
+  background-color: var(--primary-light);
+}
+
 .testnet__links {
   width: 80%;
   padding: 0 1rem;
 }
 
 .testnet__bullet {
+  position: relative;
+  bottom: -0.3rem;
   margin-right: 0.5rem;
 }
 
@@ -428,10 +460,8 @@ p {
 }
 
 .testnet__text {
-  display: flex;
-  align-items: center;
   margin-top: 1rem;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 .form {
@@ -501,6 +531,7 @@ p {
   border-radius: 0.5rem;
   background-color: var(--primary);
   color: var(--white);
+  column-gap: 0.5rem;
 }
 
 .submit-button:hover {
@@ -586,30 +617,6 @@ p {
 }
 
 @media (max-width: 768px) {
-  .feature {
-    margin-top: 2rem;
-  }
-
-  .feature__image {
-    max-width: 12rem;
-  }
-
-  .sneaker {
-    width: 12rem;
-    height: 18rem;
-  }
-
-  .sneaker-image {
-    max-width: 8rem;
-  }
-
-  .footer {
-    flex-direction: column-reverse;
-    row-gap: 3rem;
-  }
-}
-
-@media (max-width: 640px) {
   .nav {
     visibility: hidden;
     opacity: 0;
@@ -638,6 +645,30 @@ p {
     cursor: pointer;
   }
 
+  .feature {
+    margin-top: 2rem;
+  }
+
+  .feature__image {
+    max-width: 12rem;
+  }
+
+  .sneaker {
+    width: 12rem;
+    height: 18rem;
+  }
+
+  .sneaker-image {
+    max-width: 8rem;
+  }
+
+  .footer {
+    flex-direction: column-reverse;
+    row-gap: 3rem;
+  }
+}
+
+@media (max-width: 640px) {
   .feature {
     flex-direction: column;
   }

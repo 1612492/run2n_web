@@ -23,6 +23,14 @@ function Header() {
           <a href="#roadmap" className="nav-item">
             Roadmap
           </a>
+          <a
+            href="https://touristversion2.gitbook.io/internal-wiki"
+            rel="noreferer"
+            target="_blank"
+            className="nav-item"
+          >
+            Whitepaper
+          </a>
           <a href="#testnet" className="nav-item">
             Testnet
           </a>
