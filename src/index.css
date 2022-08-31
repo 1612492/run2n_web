@@ -250,6 +250,7 @@ p {
   flex-direction: row;
   align-items: center;
   column-gap: 0.5rem;
+  color: var(--text);
 }
 
 .mint__header-icon {

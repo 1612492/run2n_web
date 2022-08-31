@@ -31,19 +31,19 @@ import {
 import { hasProvider, getProvider } from '../utils/rpc';
 import { getMint, getReferCode, postReferCode } from '../utils/rest';
 
-const CONTRACT_ADDRESS = '0x78958C9713ab25fA4dfa92b83430d3C1E1586483';
+const CONTRACT_ADDRESS = '0x393D9F15E29d52A9ec6B909F8e670E74B82D3001';
 
 const limit = 10;
 
 const chain = {
-  chainId: 97,
-  chainName: 'Binance Smart Chain Testnet',
+  chainId: 56,
+  chainName: 'Binance Smart Chain Mainnet',
   nativeCurrency: {
-    symbol: 'tBNB',
+    symbol: 'BNB',
     decimals: 18,
   },
-  rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545'],
-  blockExplorerUrls: ['https://testnet.bscscan.com'],
+  rpcUrls: ['https://bsc-dataseed1.binance.org'],
+  blockExplorerUrls: ['https://bscscan.com'],
 };
 
 const schema = yup.object({
@@ -307,11 +307,13 @@ function Mint() {
       <section className="mint__header">
         {isConnected && account && balance ? (
           <>
-            <article className="mint__header-item">
-              <p>
-                Your refer code: <strong>{referCode}</strong>
-              </p>
-            </article>
+            {referCode ? (
+              <article className="mint__header-item">
+                <p>
+                  Your refer code: <strong>{referCode}</strong>
+                </p>
+              </article>
+            ) : null}
             <article className="mint__header-item">
               <img src={userIcon} className="mint__header-icon" alt="account" />
               <p>{shortenAccount(account, 10, 6)}</p>
@@ -319,7 +321,7 @@ function Mint() {
             {isSupported ? (
               <article className="mint__header-item">
                 <img src={walletIcon} className="mint__header-icon" alt="balance" />
-                <p>{shortenBalance(balance)}</p>
+                <p>{shortenBalance(balance)} BNB</p>
               </article>
             ) : null}
           </>
