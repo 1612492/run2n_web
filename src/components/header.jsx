@@ -1,12 +1,15 @@
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+
 import logo from '../images/logo.png';
 
 function Header() {
   return (
     <header className="header">
       <section className="container navbar">
-        <a href="#home">
+        <HashLink to="/#home">
           <img src={logo} alt="logo" className="logo" />
-        </a>
+        </HashLink>
         <input type="checkbox" id="fake-input" className="fake-input" />
         <label htmlFor="fake-input" className="toggle-button">
           <span className="line line--top"></span>
@@ -14,15 +17,15 @@ function Header() {
           <span className="line line--bottom"></span>
         </label>
         <nav className="nav">
-          <a href="#features" className="nav-item">
+          <HashLink to="/#features" className="nav-item">
             Features
-          </a>
-          <a href="#marketplace" className="nav-item">
+          </HashLink>
+          <HashLink to="/#marketplace" className="nav-item">
             Marketplace
-          </a>
-          <a href="#roadmap" className="nav-item">
+          </HashLink>
+          <HashLink to="/#roadmap" className="nav-item">
             Roadmap
-          </a>
+          </HashLink>
           <a
             href="https://touristversion2.gitbook.io/internal-wiki"
             rel="noreferer"
@@ -31,12 +34,15 @@ function Header() {
           >
             Whitepaper
           </a>
-          <a href="#testnet" className="nav-item">
+          <HashLink to="/#testnet" className="nav-item">
             Testnet
-          </a>
-          <a href="#contact" className="nav-item">
+          </HashLink>
+          <HashLink to="/#contact" className="nav-item">
             Contact
-          </a>
+          </HashLink>
+          <Link to="/mint-pass" className="nav-item">
+            Mint pass
+          </Link>
         </nav>
       </section>
     </header>

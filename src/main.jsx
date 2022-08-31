@@ -1,32 +1,26 @@
 import './index.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { ToastContainer } from 'react-toastify';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Header from './components/header';
-import Intro from './components/intro';
-import Video from './components/video';
-import Features from './components/features';
-import Marketplace from './components/marketplace';
-import Roadmap from './components/roadmap';
-import Testnet from './components/testnet';
-import Contact from './components/contact';
-import Footer from './components/footer';
-import Main from './components/main';
+import Layout from './components/layout';
+import Home from './pages/home';
+import Mint from './pages/mint';
 
 const root = document.getElementById('root');
 
 createRoot(root).render(
   <StrictMode>
-    <Header />
-    <Main>
-      <Intro />
-      <Video />
-      <Features />
-      <Marketplace />
-      <Roadmap />
-      <Testnet />
-      <Contact />
-    </Main>
-    <Footer />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="mint-pass" element={<Mint />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    <ToastContainer position="top-right" />
   </StrictMode>
 );

@@ -1,11 +1,11 @@
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { toast } from 'react-toastify';
 
-import Toast from '../components/toast';
-import useFetch from '../hooks/useFetch';
 import uploadIcon from '../images/upload.svg';
 import classname from '../utils/classname';
+import { postContact } from '../utils/rest';
 
 const schema = yup.object({
   email: yup.string().email('Email is invalid').required('Email is required'),
@@ -25,10 +25,13 @@ function Contact() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const { post, reset, isLoading, error, data } = useFetch();
 
-  async function onSubmit(payload) {
-    await post('/contact', payload);
+  async function onSubmit({ email, message }) {
+    await toast.promise(postContact({ email, message }), {
+      pending: 'Submitting',
+      success: 'Success',
+      error: 'Error',
+    });
   }
 
   return (
@@ -61,14 +64,11 @@ function Contact() {
           className={classname('form__input', errors.message && 'form__input--error')}
         />
         <p className="form__error-text">{errors.message?.message}</p>
-        <button disabled={isLoading} className="submit-button">
+        <button className="submit-button">
           <img src={uploadIcon} alt="icon" />
           Submit
         </button>
       </form>
-
-      {error ? <Toast type="error" message={error.message} onTimeout={reset} /> : null}
-      {data ? <Toast type="success" message="Submit successfully" onTimeout={reset} /> : null}
     </section>
   );
 }

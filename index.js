@@ -19,6 +19,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('dist'));
 
+app.use('*', function (_, res) {
+  res.sendFile(__dirname + '/dist/index.html');
+});
+
 app.post('/contact', (req, res) => {
   const { email, message } = req.body;
 
