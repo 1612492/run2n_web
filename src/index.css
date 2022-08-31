@@ -772,32 +772,6 @@ p {
 }
 
 @media (max-width: 1024px) {
-  .sneaker {
-    width: 16rem;
-    height: 22rem;
-  }
-
-  .sneaker-image {
-    max-width: 8rem;
-  }
-
-  .roadmap__row {
-    margin-bottom: 2rem;
-    display: block;
-  }
-
-  .roadmap__row-left,
-  .roadmap__row-right {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .roadmap__row-mid {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
   .nav {
     visibility: hidden;
     opacity: 0;
@@ -826,6 +800,32 @@ p {
     cursor: pointer;
   }
 
+  .sneaker {
+    width: 16rem;
+    height: 22rem;
+  }
+
+  .sneaker-image {
+    max-width: 8rem;
+  }
+
+  .roadmap__row {
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  .roadmap__row-left,
+  .roadmap__row-right {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .roadmap__row-mid {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
   .feature {
     margin-top: 2rem;
   }
@@ -866,6 +866,16 @@ p {
   .sneaker-image {
     max-width: 10rem;
   }
+
+  .mint__image {
+    width: 100%;
+    margin: auto;
+  }
+
+  .mint__infos {
+    flex-direction: column;
+    align-self: flex-start;
+  }
 }
 
 @media (max-width: 460px) {
@@ -898,5 +908,9 @@ p {
 
   .sneaker-image {
     max-width: 10rem;
+  }
+
+  .mint__button {
+    width: 100%;
   }
 }

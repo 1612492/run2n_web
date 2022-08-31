@@ -331,7 +331,7 @@ function Mint() {
       <div className="mint__infos">
         {price ? <p>Price: {price} BNB</p> : null}
         {maxMints ? <p>Max: {maxMints} items</p> : null}
-        {currentMints ? <p>Current: {currentMints} items</p> : null}
+        {currentMints ? <p>Sold: {currentMints} items</p> : null}
         {currentMints && maxMints ? <p>Remain: {maxMints - currentMints} items</p> : null}
       </div>
       {isConnected && provider ? (
