@@ -79,8 +79,6 @@ function Mint() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  console.log({ price, currentMints, maxMints });
-
   async function getMintInfos() {
     try {
       const provider = new JsonRpcProvider(chain.rpcUrls[0]);

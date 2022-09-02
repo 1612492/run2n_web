@@ -876,6 +876,11 @@ p {
     flex-direction: column;
     align-self: flex-start;
   }
+
+  .modal {
+    width: unset;
+    margin: 2rem 1rem 0;
+  }
 }
 
 @media (max-width: 460px) {
