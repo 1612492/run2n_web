@@ -284,8 +284,14 @@ p {
   margin-top: 2rem;
   display: flex;
   column-gap: 1rem;
-  font-weight: 600;
   color: var(--text);
+}
+
+.mint__form {
+  margin-top: 2rem;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
 }
 
 .history {
@@ -400,8 +406,29 @@ p {
   border: none;
 }
 
+.copy-button {
+  position: relative;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.copied-text {
+  position: absolute;
+  top: -1.5rem;
+  right: -2rem;
+  background: var(--shadow);
+  padding: 0.2rem 0.5rem;
+  color: var(--text);
+}
+
 .close-icon {
   width: 2rem;
+}
+
+.copy-icon {
+  width: 1.2rem;
 }
 
 .title {
@@ -646,10 +673,6 @@ p {
   flex-direction: column;
 }
 
-.form--full {
-  width: 100%;
-}
-
 .form__label {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
@@ -826,6 +849,11 @@ p {
 }
 
 @media (max-width: 768px) {
+  .mint__header {
+    flex-direction: column;
+    row-gap: 0.5rem;
+  }
+
   .feature {
     margin-top: 2rem;
   }
@@ -870,6 +898,10 @@ p {
   .mint__image {
     width: 100%;
     margin: auto;
+  }
+
+  .mint__form {
+    width: 100%;
   }
 
   .mint__infos {

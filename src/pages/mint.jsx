@@ -10,13 +10,13 @@ import * as yup from 'yup';
 import { serializeError } from 'eth-rpc-errors';
 
 import MintPass from '../abis/MintPass.json';
-import Modal from '../components/modal';
+import useLocalStorage from '../hooks/useLocalStorage';
 import mintPassImage from '../images/mint-pass.png';
 import chevronLeftIcon from '../images/chevron-left.svg';
 import chevronRightIcon from '../images/chevron-right.svg';
 import userIcon from '../images/user.svg';
 import walletIcon from '../images/wallet.svg';
-import closeIcon from '../images/close.svg';
+import copyIcon from '../images/copy.svg';
 import classname from '../utils/classname';
 import {
   convertHexStringToNumber,
@@ -64,18 +64,16 @@ function Mint() {
   const [balance, setBalance] = useState(null);
   const [provider, setProvider] = useState(null);
   const [isSupported, setIsSupported] = useState(false);
-  const [price, setPrice] = useState(null);
-  const [currentMints, setCurrentMintes] = useState(null);
-  const [maxMints, setMaxMints] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [price, setPrice] = useLocalStorage('price', null);
+  const [currentMints, setCurrentMintes] = useLocalStorage('currentMints', null);
+  const [maxMints, setMaxMints] = useLocalStorage('maxMints', null);
   const [referCode, setReferCode] = useState(null);
-  const [isSubmited, setIsSubmited] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const {
     register,
     control,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -84,12 +82,18 @@ function Mint() {
       const provider = new JsonRpcProvider(chain.rpcUrls[0]);
       const contract = new Contract(CONTRACT_ADDRESS, MintPass, provider);
 
-      const price = await contract.price();
-      setPrice(convertBigNumberToString(price));
-      const currentMints = await contract.currentNbBox();
-      setCurrentMintes(currentMints.toNumber());
-      const maxMints = await contract.maximumMintPass();
-      setMaxMints(maxMints.toNumber());
+      Promise.all([contract.price(), contract.currentNbBox(), contract.maximumMintPass()]).then(
+        ([rawPrice, rawCurrentMints, rawMaxMints]) => {
+          const newPrice = convertBigNumberToString(rawPrice);
+          if (newPrice !== price) setPrice(newPrice);
+
+          const newCurrentMints = rawCurrentMints.toNumber();
+          if (newCurrentMints !== currentMints) setCurrentMintes(newCurrentMints);
+
+          const newMaxMints = rawMaxMints.toNumber();
+          if (newMaxMints !== maxMints) setMaxMints(newMaxMints);
+        }
+      );
     } catch (error) {
       console.error(error);
     }
@@ -163,9 +167,6 @@ function Mint() {
       } else {
         toast.error(serializedError.message);
       }
-    } finally {
-      setIsSubmited(true);
-      setOpen(false);
     }
   }
 
@@ -205,6 +206,16 @@ function Mint() {
         toast.error(error.message);
       });
   }, []);
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(account);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1000);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
     if (hasProvider()) {
@@ -250,16 +261,6 @@ function Mint() {
       });
     }
   }, [account]);
-
-  useEffect(() => {
-    if (isSubmited) {
-      reset({
-        amount: undefined,
-        referCode: undefined,
-      });
-      setIsSubmited(false);
-    }
-  }, [isSubmited]);
 
   useEffect(() => {
     if (isConnected && account && provider) {
@@ -312,31 +313,95 @@ function Mint() {
                 </p>
               </article>
             ) : null}
-            <article className="mint__header-item">
-              <img src={userIcon} className="mint__header-icon" alt="account" />
-              <p>{shortenAccount(account, 10, 6)}</p>
-            </article>
             {isSupported ? (
               <article className="mint__header-item">
                 <img src={walletIcon} className="mint__header-icon" alt="balance" />
                 <p>{shortenBalance(balance)} BNB</p>
               </article>
             ) : null}
+            <article className="mint__header-item">
+              <img src={userIcon} className="mint__header-icon" alt="account" />
+              <p>{shortenAccount(account, 10, 6)}</p>
+              <button onClick={() => copy()} className="copy-button">
+                <img src={copyIcon} alt="copy" className="copy-icon" />
+                {copied ? <p className="copied-text">Copied</p> : null}
+              </button>
+            </article>
           </>
         ) : null}
       </section>
       <img src={mintPassImage} alt="mint pass" className="mint__image" />
       <div className="mint__infos">
-        {price ? <p>Price: {price} BNB</p> : null}
-        {maxMints ? <p>Max: {maxMints} items</p> : null}
-        {currentMints ? <p>Sold: {currentMints} items</p> : null}
-        {currentMints && maxMints ? <p>Remain: {maxMints - currentMints} items</p> : null}
+        {price ? (
+          <p>
+            Price: <strong>{price}</strong> BNB
+          </p>
+        ) : null}
+        {maxMints ? (
+          <p>
+            Max: <strong>{maxMints}</strong> items
+          </p>
+        ) : null}
+        {currentMints ? (
+          <p>
+            Sold: <strong>{currentMints}</strong> items
+          </p>
+        ) : null}
+        {currentMints && maxMints ? (
+          <p>
+            Remain: <strong>{maxMints - currentMints}</strong> items
+          </p>
+        ) : null}
       </div>
+
       {isConnected && provider ? (
         isSupported ? (
-          <button onClick={() => setOpen(true)} className="mint__button">
-            Buy
-          </button>
+          <form className="mint__form">
+            <label
+              htmlFor="amount"
+              className={classname('form__label', errors.amount && 'form__label--error')}
+            >
+              Amount
+            </label>
+            <Controller
+              render={({ field }) => {
+                const { name, ref, onChange, onBlur } = field;
+
+                return (
+                  <NumberFormat
+                    id="amount"
+                    ref={ref}
+                    name={name}
+                    onBlur={onBlur}
+                    onValueChange={(c) => onChange(c.floatValue)}
+                    allowEmptyFormatting
+                    thousandSeparator
+                    className={classname('form__input', errors.amount && 'form__input--error')}
+                    autoComplete="off"
+                  />
+                );
+              }}
+              name="amount"
+              control={control}
+            />
+            <p className="form__error-text">{errors.amount?.message}</p>
+            <label
+              htmlFor="refferCode"
+              className={classname('form__label', errors.refferCode && 'form__label--error')}
+            >
+              Reffer code (optional)
+            </label>
+            <input
+              id="refferCode"
+              className={classname('form__input', errors.refferCode && 'form__input--error')}
+              autoComplete="off"
+              {...register('refferCode')}
+            />
+            <p className="form__error-text">{errors.refferCode?.message}</p>
+            <button type="button" onClick={() => handleSubmit(onSubmit)()} className="mint__button">
+              Buy
+            </button>
+          </form>
         ) : (
           <button onClick={() => changeChain()} className="mint__button">
             Change to the supported chain
@@ -403,59 +468,6 @@ function Mint() {
           </div>
         </>
       ) : null}
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <div className="modal">
-          <div className="modal__header modal__header--end">
-            <button onClick={() => setOpen(false)} className="modal__button-close">
-              <img src={closeIcon} alt="close" className="close-icon" />
-            </button>
-          </div>
-          <form onSubmit={handleSubmit(onSubmit)} className="form form--full">
-            <label
-              htmlFor="amount"
-              className={classname('form__label', errors.amount && 'form__label--error')}
-            >
-              Amount
-            </label>
-            <Controller
-              render={({ field }) => {
-                const { name, ref, onChange, onBlur } = field;
-
-                return (
-                  <NumberFormat
-                    id="amount"
-                    ref={ref}
-                    name={name}
-                    onBlur={onBlur}
-                    onValueChange={(c) => onChange(c.floatValue)}
-                    allowEmptyFormatting
-                    thousandSeparator
-                    className={classname('form__input', errors.amount && 'form__input--error')}
-                    autoComplete="off"
-                  />
-                );
-              }}
-              name="amount"
-              control={control}
-            />
-            <p className="form__error-text">{errors.amount?.message}</p>
-            <label
-              htmlFor="refferCode"
-              className={classname('form__label', errors.refferCode && 'form__label--error')}
-            >
-              Reffer code (optional)
-            </label>
-            <input
-              id="refferCode"
-              className={classname('form__input', errors.refferCode && 'form__input--error')}
-              autoComplete="off"
-              {...register('refferCode')}
-            />
-            <p className="form__error-text">{errors.refferCode?.message}</p>
-            <button className="submit-button">Confirm</button>
-          </form>
-        </div>
-      </Modal>
     </section>
   );
 }
