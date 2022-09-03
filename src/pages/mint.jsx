@@ -50,7 +50,7 @@ const schema = yup.object({
   amount: yup
     .number()
     .moreThan(0, 'Amount must greater than 0')
-    .integer('Amount must be an integer (1, 2, 3, ...)')
+    .integer('Amount must be an integer (1 Mint Pass, 2 Mint Pass, 3 Mint Pass, ...)')
     .required('Amount is required'),
   refferCode: yup.string(),
 });

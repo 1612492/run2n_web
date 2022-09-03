@@ -19,10 +19,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('dist'));
 
-app.use('*', function (_, res) {
-  res.sendFile(__dirname + '/dist/index.html');
-});
-
 app.post('/contact', (req, res) => {
   const { email, message } = req.body;
 
@@ -36,6 +32,10 @@ app.post('/contact', (req, res) => {
       });
     })
     .catch((error) => res.status(400).json(error));
+});
+
+app.get('*', function (_, res) {
+  res.sendFile(__dirname + '/dist/index.html');
 });
 
 app.listen(3000, () => console.log('Server is listening on http://localhost:3000'));
