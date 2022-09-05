@@ -386,11 +386,6 @@ function Mint() {
             Remain: <strong>{maxMints - currentMints}</strong> items
           </p>
         ) : null}
-        {currentMints && maxMints ? (
-          <p>
-            Remain: <strong>{maxMints - currentMints}</strong> items
-          </p>
-        ) : null}
         {remainTime || remainTime > 0 ? (
           <p>
             Time remain: <strong>{formatTime(remainTime)}</strong>
