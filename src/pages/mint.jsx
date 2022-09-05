@@ -32,6 +32,8 @@ import { hasProvider, getProvider } from '../utils/rpc';
 import { getMint, getReferCode, postReferCode } from '../utils/rest';
 
 const CONTRACT_ADDRESS = '0x393D9F15E29d52A9ec6B909F8e670E74B82D3001';
+const endTime = new Date(Date.UTC(2022, 8, 6, 10, 0, 0));
+const currentTime = new Date();
 
 const limit = 10;
 
@@ -55,6 +57,25 @@ const schema = yup.object({
   refferCode: yup.string(),
 });
 
+function formatTime(time) {
+  var _second = 1000;
+  var _minute = _second * 60;
+  var _hour = _minute * 60;
+  var _day = _hour * 24;
+
+  var hours = Math.floor((time % _day) / _hour);
+  var minutes = Math.floor((time % _hour) / _minute);
+  var seconds = Math.floor((time % _minute) / _second);
+
+  return (
+    String(hours).padStart(2, '0') +
+    ':' +
+    String(minutes).padStart(2, '0') +
+    ':' +
+    String(seconds).padStart(2, '0')
+  );
+}
+
 function Mint() {
   const [histories, setHistories] = useState(null);
   const [page, setPage] = useState(0);
@@ -69,6 +90,9 @@ function Mint() {
   const [maxMints, setMaxMints] = useLocalStorage('maxMints', null);
   const [referCode, setReferCode] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [remainTime, setRemainTime] = useState(
+    endTime - currentTime > 0 ? endTime - currentTime : 0
+  );
 
   const {
     register,
@@ -255,6 +279,16 @@ function Mint() {
   }, []);
 
   useEffect(() => {
+    if (remainTime > 0) {
+      let intervalId = setInterval(() => {
+        setRemainTime((prevState) => prevState - 1000);
+      }, 1000);
+
+      return () => clearInterval(intervalId);
+    }
+  }, [remainTime]);
+
+  useEffect(() => {
     if (account) {
       getReferCode({ address: account }).then(({ data }) => {
         setReferCode(data.data.refer_code);
@@ -350,6 +384,16 @@ function Mint() {
         {currentMints && maxMints ? (
           <p>
             Remain: <strong>{maxMints - currentMints}</strong> items
+          </p>
+        ) : null}
+        {currentMints && maxMints ? (
+          <p>
+            Remain: <strong>{maxMints - currentMints}</strong> items
+          </p>
+        ) : null}
+        {remainTime || remainTime > 0 ? (
+          <p>
+            Time remain: <strong>{formatTime(remainTime)}</strong>
           </p>
         ) : null}
       </div>
