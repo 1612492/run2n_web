@@ -17,7 +17,7 @@ createRoot(root).render(
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="mint-pass" element={<Mint />} />
+          {/* <Route path="mint-pass" element={<Mint />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>

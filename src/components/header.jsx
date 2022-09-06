@@ -40,9 +40,9 @@ function Header() {
           <HashLink to="/#contact" className="nav-item">
             Contact
           </HashLink>
-          <Link to="/mint-pass" className="nav-item">
-            Mint pass
-          </Link>
+          {/* <Link to="/mint-pass" className="nav-item"> */}
+          {/*   Mint pass */}
+          {/* </Link> */}
         </nav>
       </section>
     </header>
