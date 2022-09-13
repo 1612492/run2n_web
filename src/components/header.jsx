@@ -27,7 +27,7 @@ function Header() {
             Roadmap
           </HashLink>
           <a
-            href="https://touristversion2.gitbook.io/internal-wiki"
+            href="https://touristversion2.gitbook.io/whitepaper"
             rel="noreferer"
             target="_blank"
             className="nav-item"
